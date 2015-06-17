@@ -6,13 +6,20 @@ CRI Atom Craftのデータを自動生成する
 
 #セットアップ
 * Assets下にEditorフォルダを作成します。
-* EditorフォルダにMakeAtomCraftData.csをコピーします。
+* EditorフォルダにMakeAtomCraftData.cs、MakeAtomCraftACF.csをコピーします。
 
-#使い方
+#使い方1.(ワークユニットファイル(ACB)の生成）
 * Assets下にMaterialsフォルダを用意します。
 * 使いたい波形を登録します
 * メニュー「CRI>My>Open MakeAtomCraft...」を選択します。
 * キューシート名を設定して「Make Atom Craft Data」ボタンを押します。
+
+#使い方2.（全体設定(ACF)の生成）
+* メニュー「CRI>My>Open MakeAtomACF...」を選択します。
+* ACF名、カテゴリを設定して「Make Atom ACF Data」ボタンを押します。
+
+#使い方3.（AtomCraftへの読み込み）
+できあがったatmcglobalsやwrokunitフォルダを、新規作成したAtomCraftのファイルへ上書きします。
 
 動画→https://www.youtube.com/watch?v=vCJa73xqK6I
 （仕様が変わったのでワークユニットに登録するところのみ参考に）
