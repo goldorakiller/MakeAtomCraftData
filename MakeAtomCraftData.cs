@@ -70,7 +70,7 @@ public class MakeAtomCraftData : EditorWindow {
 		EditorGUILayout.BeginHorizontal();		
 		pos3dDistanceMin = EditorGUILayout.FloatField(pos3dDistanceMin,GUILayout.Width(80));		
 		pos3dDistanceMax = EditorGUILayout.FloatField(pos3dDistanceMax,GUILayout.Width(80));
-		pos3dDopplerCoefficient = EditorGUILayout.FloatField(pos3dDopplerCoefficient,GUILayout.Width(80));
+		pos3dDopplerCoefficient = EditorGUILayout.FloatField(pos3dDopplerCoefficient,GUILayout.Width(80)	);
 		EditorGUILayout.EndHorizontal();
 		EditorGUILayout.Space();
 
@@ -161,7 +161,7 @@ public class MakeAtomCraftData : EditorWindow {
 				cueString += "\" ";
 			}
 			cueString += "Pos3dDistanceMin=\""+pos3dDistanceMin+"\" Pos3dDistanceMax=\""+pos3dDistanceMax+"\" "; 
-			cueString += "Pos3dDopplerCoefficient\""+pos3dDopplerCoefficient+"\" ";
+			cueString += "Pos3dDopplerCoefficient=\""+pos3dDopplerCoefficient+"\" ";
 
 			cueString += "DisplayUnit=\"Frame5994\" OrcaType=\"CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue\">";
 			
