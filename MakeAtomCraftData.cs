@@ -15,7 +15,9 @@ public class MakeAtomCraftData : EditorWindow {
 	public string outputCueSheetName = "TestCueSheet";		//	出力するキューシート名
 	public string srcMaterialsFolder = "Materials";	//	キューを作成するwavファイルのあるフォルダ名
 	public string defaultGroupCategory = "Category_0";		//	キューに設定するカテゴリ名
-
+	public float pos3dDistanceMin = 10.0f;
+	public float pos3dDistanceMax = 50.0f;
+	public float pos3dDopplerCoefficient = 0.0f;
 
 	[MenuItem("CRI/My/Open MakeAtomCraftData ...")]
 	static void OpenWindow()
@@ -58,6 +60,20 @@ public class MakeAtomCraftData : EditorWindow {
 		EditorGUILayout.LabelField("Cagetgory Name");
 		defaultGroupCategory = EditorGUILayout.TextField(defaultGroupCategory);
 		EditorGUILayout.Space();
+
+		
+		EditorGUILayout.BeginHorizontal();		
+		EditorGUILayout.LabelField("3DPos Min",GUILayout.Width(80));
+		EditorGUILayout.LabelField("Max",GUILayout.Width(80));
+		EditorGUILayout.LabelField("Doppler",GUILayout.Width(80));
+		EditorGUILayout.EndHorizontal();
+		EditorGUILayout.BeginHorizontal();		
+		pos3dDistanceMin = EditorGUILayout.FloatField(pos3dDistanceMin,GUILayout.Width(80));		
+		pos3dDistanceMax = EditorGUILayout.FloatField(pos3dDistanceMax,GUILayout.Width(80));
+		pos3dDopplerCoefficient = EditorGUILayout.FloatField(pos3dDopplerCoefficient,GUILayout.Width(80));
+		EditorGUILayout.EndHorizontal();
+		EditorGUILayout.Space();
+
 		if(GUILayout.Button("Make Atom Craft Data")){
 			DoMake();
 		}
@@ -144,11 +160,14 @@ public class MakeAtomCraftData : EditorWindow {
 				cueString += defaultGroupCategory;
 				cueString += "\" ";
 			}
+			cueString += "Pos3dDistanceMin=\""+pos3dDistanceMin+"\" Pos3dDistanceMax=\""+pos3dDistanceMax+"\" "; 
+			cueString += "Pos3dDopplerCoefficient\""+pos3dDopplerCoefficient+"\" ";
+
 			cueString += "DisplayUnit=\"Frame5994\" OrcaType=\"CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue\">";
 			
 			sw.WriteLine(cueString);
 			sw.WriteLine("              <Orca OrcaName=\"Track_" + wavName + "\" SynthType=\"Track\" SwitchRange=\"0.5\" DisplayUnit=\"Frame5994\" ObjectColor=\"200, 30, 100, 180\" OrcaType=\"CriMw.CriAtomCraft.AcCore.AcOoCueSynthTrack\">");
-			sw.WriteLine("                <Orca OrcaName=\"" + wavName + ".wav\" LinkWaveform=\"/CriAtomCraftV2Root/WorkUnits/WorkUnit_" + cuesheetName +"_MaterialInfo/MaterialRootFolder/" + wavName + ".wav\" SynthType=\"Waveform\" LinkWaveformPathName=\"" + wavName + ".wav\" OrcaType=\"CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform\" />");
+			sw.WriteLine("                <Orca OrcaName=\"" + wavName + ".wav\" PanType=\"Auto\" LinkWaveform=\"/CriAtomCraftV2Root/WorkUnits/WorkUnit_" + cuesheetName +"_MaterialInfo/MaterialRootFolder/" + wavName + ".wav\" SynthType=\"Waveform\" LinkWaveformPathName=\"" + wavName + ".wav\" OrcaType=\"CriMw.CriAtomCraft.AcCore.AcOoCueSynthWaveform\" />");
 			sw.WriteLine("              </Orca>");
 			sw.WriteLine("            </Orca>");
 			
