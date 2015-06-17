@@ -80,7 +80,7 @@ public class MakeAtomCraftACF : EditorWindow {
 		outputAcfName = EditorGUILayout.TextField(outputAcfName);	
 		EditorGUILayout.Space();
 		EditorGUILayout.BeginHorizontal();
-		EditorGUILayout.LabelField("Cagetgory Name",GUILayout.Width(120));
+		EditorGUILayout.LabelField("Category Name",GUILayout.Width(120));
 		EditorGUILayout.LabelField("Cue Limit",GUILayout.Width(100));
 		EditorGUILayout.EndHorizontal();
 		for(int i = 0;i<defaultGroupCategoryList.Count;i++){

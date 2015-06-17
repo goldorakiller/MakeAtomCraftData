@@ -57,7 +57,7 @@ public class MakeAtomCraftData : EditorWindow {
 		EditorGUILayout.LabelField("Materials Folder Path");
 		srcMaterialsFolder = EditorGUILayout.TextField(srcMaterialsFolder);
 		EditorGUILayout.Space();
-		EditorGUILayout.LabelField("Cagetgory Name");
+		EditorGUILayout.LabelField("Category Name");
 		defaultGroupCategory = EditorGUILayout.TextField(defaultGroupCategory);
 		EditorGUILayout.Space();
 
