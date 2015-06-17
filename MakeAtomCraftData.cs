@@ -1,17 +1,71 @@
 using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System;
 
-public class MakeAtomCraftData : MonoBehaviour {
-	
-	public string outputCueSheetName = "Test";		//	出力するキューシート名
+public class MakeAtomCraftData : EditorWindow {
+
+	private Vector2 scrollPos;
+	private Vector2 scrollPos_Window;
+	private Rect windowRect = new Rect(10, 10, 100, 100);
+	private bool scaling = true;
+
+	public string outputCueSheetName = "TestCueSheet";		//	出力するキューシート名
 	public string srcMaterialsFolder = "Materials";	//	キューを作成するwavファイルのあるフォルダ名
 	public string defaultGroupCategory = "CategoryGroup_0/Category_0";		//	キューに設定するグループ名/カテゴリ名
-	
+
+
+	[MenuItem("CRI/My/Open MakeAtomCraftData ...")]
+	static void OpenWindow()
+	{
+		EditorWindow.GetWindow<MakeAtomCraftData>(false, "MakeAtomCraftData");
+	}
+
+	private void ScalingWindow(int windowID)
+	{
+		GUILayout.Box("", GUILayout.Width(20), GUILayout.Height(20));
+		if (Event.current.type == EventType.MouseUp)
+			this.scaling = false;
+		else if (Event.current.type == EventType.MouseDown && GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition))
+			this.scaling = true;
+		
+		if (this.scaling)
+			this.windowRect = new Rect(windowRect.x, windowRect.y, windowRect.width + Event.current.delta.x, windowRect.height + Event.current.delta.y);		
+	}
+
+	private void OnGUI()
+	{
+		this.windowRect = GUILayout.Window(0, windowRect, ScalingWindow, "resizeable", GUILayout.MinHeight(80), GUILayout.MaxHeight(200));
+		
+		this.scrollPos_Window = GUILayout.BeginScrollView(this.scrollPos_Window);
+		{
+			GUIMain();
+		}
+		GUILayout.EndScrollView();
+	}
+
+	void GUIMain()
+	{
+		EditorGUILayout.BeginVertical();
+		EditorGUILayout.LabelField("CueSheet Name");
+		outputCueSheetName = EditorGUILayout.TextField(outputCueSheetName);	
+		EditorGUILayout.Space();
+		EditorGUILayout.LabelField("Materials Folder Path");
+		srcMaterialsFolder = EditorGUILayout.TextField(srcMaterialsFolder);
+		EditorGUILayout.Space();
+		EditorGUILayout.LabelField("Group/Cagetgory Name");
+		defaultGroupCategory = EditorGUILayout.TextField(defaultGroupCategory);
+		EditorGUILayout.Space();
+		if(GUILayout.Button("Make Atom Craft Data")){
+			DoMake();
+		}
+		EditorGUILayout.EndVertical();
+	}
+
 	// Use this for initialization
-	void Start () {
+	void DoMake () {
 		List<string> wavList = new List<string>();
 		string matelialsPath = Application.dataPath + "/" + srcMaterialsFolder;
 		
@@ -30,9 +84,7 @@ public class MakeAtomCraftData : MonoBehaviour {
 			
 			CopyMaterialsFolder(outputCueSheetName,fileList,matelialsPath);
 
-			
 			Debug.Log("Make Atom Craft Data Finish!");
-
 		}
 	}
 	
