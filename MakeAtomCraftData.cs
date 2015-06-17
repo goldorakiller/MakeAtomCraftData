@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ public class MakeAtomCraftData : EditorWindow {
 
 	public string outputCueSheetName = "TestCueSheet";		//	出力するキューシート名
 	public string srcMaterialsFolder = "Materials";	//	キューを作成するwavファイルのあるフォルダ名
-	public string defaultGroupCategory = "CategoryGroup_0/Category_0";		//	キューに設定するグループ名/カテゴリ名
+	public string defaultGroupCategory = "Category_0";		//	キューに設定するカテゴリ名
 
 
 	[MenuItem("CRI/My/Open MakeAtomCraftData ...")]
@@ -55,7 +55,7 @@ public class MakeAtomCraftData : EditorWindow {
 		EditorGUILayout.LabelField("Materials Folder Path");
 		srcMaterialsFolder = EditorGUILayout.TextField(srcMaterialsFolder);
 		EditorGUILayout.Space();
-		EditorGUILayout.LabelField("Group/Cagetgory Name");
+		EditorGUILayout.LabelField("Cagetgory Name");
 		defaultGroupCategory = EditorGUILayout.TextField(defaultGroupCategory);
 		EditorGUILayout.Space();
 		if(GUILayout.Button("Make Atom Craft Data")){
@@ -140,7 +140,7 @@ public class MakeAtomCraftData : EditorWindow {
 			if(defaultGroupCategory != String.Empty){
 				//	CategoryGroup/CategoryName
 				//	Category0="/CriAtomCraftV2Root/GlobalSettings/Categories/CategoryGroup_0/Category_0"
-				cueString += "Category0=\"/CriAtomCraftV2Root/GlobalSettings/Categories/";
+				cueString += "Category0=\"/CriAtomCraftV2Root/GlobalSettings/Categories/CategoryGroup_0/";
 				cueString += defaultGroupCategory;
 				cueString += "\" ";
 			}
