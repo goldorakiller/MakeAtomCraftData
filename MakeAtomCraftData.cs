@@ -14,7 +14,7 @@ public class MakeAtomCraftData : EditorWindow {
 
 	public string outputCueSheetName = "CueSheet_0";		//	出力するキューシート名
 	public string srcMaterialsFolder = "Materials";	//	キューを作成するwavファイルのあるフォルダ名
-	public string defaultGroupCategory = "Category_0";		//	キューに設定するカテゴリ名
+	public string defaultGroupCategory = "SE";		//	キューに設定するカテゴリ名
 	public float pos3dDistanceMin = 10.0f;
 	public float pos3dDistanceMax = 50.0f;
 	public float pos3dDopplerCoefficient = 0.0f;
