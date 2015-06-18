@@ -15,6 +15,7 @@ public class MakeAtomCraftData : EditorWindow {
 	public string outputCueSheetName = "CueSheet_0";		//	出力するキューシート名
 	public string srcMaterialsFolder = "Materials";	//	キューを作成するwavファイルのあるフォルダ名
 	public string defaultGroupCategory = "SE";		//	キューに設定するカテゴリ名
+	public int cuePriority=127; 	//	
 	public float pos3dDistanceMin = 10.0f;
 	public float pos3dDistanceMax = 50.0f;
 	public float pos3dDopplerCoefficient = 0.0f;
@@ -60,7 +61,9 @@ public class MakeAtomCraftData : EditorWindow {
 		EditorGUILayout.LabelField("Category Name");
 		defaultGroupCategory = EditorGUILayout.TextField(defaultGroupCategory);
 		EditorGUILayout.Space();
-
+		EditorGUILayout.LabelField("Cue Priority");
+		cuePriority = EditorGUILayout.IntSlider(cuePriority,0,255);
+		EditorGUILayout.Space();
 		
 		EditorGUILayout.BeginHorizontal();		
 		EditorGUILayout.LabelField("3DPos Min",GUILayout.Width(80));
@@ -162,6 +165,8 @@ public class MakeAtomCraftData : EditorWindow {
 			}
 			cueString += "Pos3dDistanceMin=\""+pos3dDistanceMin+"\" Pos3dDistanceMax=\""+pos3dDistanceMax+"\" "; 
 			cueString += "Pos3dDopplerCoefficient=\""+pos3dDopplerCoefficient+"\" ";
+
+			cueString += "CuePriority=\""+cuePriority+"\" ";
 
 			cueString += "DisplayUnit=\"Frame5994\" OrcaType=\"CriMw.CriAtomCraft.AcCore.AcOoCueSynthCue\">";
 			
