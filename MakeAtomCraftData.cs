@@ -64,17 +64,24 @@ public class MakeAtomCraftData : EditorWindow {
 		EditorGUILayout.LabelField("Cue Priority");
 		cuePriority = EditorGUILayout.IntSlider(cuePriority,0,255);
 		EditorGUILayout.Space();
+			
 		
-		EditorGUILayout.BeginHorizontal();		
-		EditorGUILayout.LabelField("3DPos Min",GUILayout.Width(80));
+		EditorGUILayout.LabelField("3DPos Rolloff Distance");	
+		EditorGUILayout.MinMaxSlider(ref pos3dDistanceMin,ref pos3dDistanceMax,0,500);
+		EditorGUILayout.BeginHorizontal();
+		EditorGUILayout.LabelField("Min",GUILayout.Width(80));	
+		pos3dDistanceMin = EditorGUILayout.FloatField(pos3dDistanceMin);
 		EditorGUILayout.LabelField("Max",GUILayout.Width(80));
-		EditorGUILayout.LabelField("Doppler",GUILayout.Width(80));
+		pos3dDistanceMax = EditorGUILayout.FloatField(pos3dDistanceMax);	
 		EditorGUILayout.EndHorizontal();
-		EditorGUILayout.BeginHorizontal();		
-		pos3dDistanceMin = EditorGUILayout.FloatField(pos3dDistanceMin,GUILayout.Width(80));		
-		pos3dDistanceMax = EditorGUILayout.FloatField(pos3dDistanceMax,GUILayout.Width(80));
+
+		
+		EditorGUILayout.Space();
+		EditorGUILayout.BeginHorizontal();
+		EditorGUILayout.LabelField("3DPos Doppler",GUILayout.Width(120));
 		pos3dDopplerCoefficient = EditorGUILayout.FloatField(pos3dDopplerCoefficient,GUILayout.Width(80)	);
 		EditorGUILayout.EndHorizontal();
+
 		EditorGUILayout.Space();
 
 		if(GUILayout.Button("Make Atom Craft Data")){
